@@ -7,12 +7,12 @@ public enum Color
 
 public class Neighbor : IComparable<Neighbor>
 {
-	public Node Node { get; set; }
-	public int Weight { get; set; }
+    public Node Node { get; set; }
+    public int Weight { get; set; }
 
     public int CompareTo(Neighbor? other)
     {
-        return this.CompareTo(other);
+        return Node.CompareTo(other.Node);
     }
 }
 
@@ -31,7 +31,22 @@ public class Node : IComparable<Node>
 
 	public int CompareTo(Node? other)
 	{
-		return this.Name.CompareTo(other.Name);
+		return Name.CompareTo(other.Name);
+	}
+
+	public override bool Equals(object? obj)
+	{
+		if (obj is Node other)
+		{
+			return Name.Equals(other.Name);
+		}
+		
+		return false;
+	}
+
+	public override int GetHashCode()
+	{
+		return Name.GetHashCode();
 	}
 }
 

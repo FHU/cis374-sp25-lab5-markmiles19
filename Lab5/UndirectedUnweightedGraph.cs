@@ -102,13 +102,23 @@ namespace Lab5
             {
                 int numConnectedComponents = 0;
 
-                // choose a random vertex
-                // do a DFS from that vertex
-                // increment the CC count
-                // choose a random vertex that is white (unvisited)
-                // do a DFS from that vertex
-                // increment the CC count
-                // choose a random vertex that is white (unvisited)
+                // Choose a random vertex
+                foreach (var node in Nodes)
+                {
+                    node.Color = Color.White;
+                }
+
+                foreach (var node in Nodes)
+                {
+                    if (node.Color == Color.White)
+                    {
+                        // Do a DFS from that vertex
+                        DFS(node, reset: true);
+
+                        // Increment the CC count
+                        numConnectedComponents++;
+                    }
+                }
 
                 return numConnectedComponents;
             }
@@ -240,4 +250,3 @@ namespace Lab5
 
     }
 }
-
